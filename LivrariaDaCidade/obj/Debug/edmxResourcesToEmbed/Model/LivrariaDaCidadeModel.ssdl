@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LivrariaDaCidadeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AUTOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EDITORA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LIVRO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_EDITORA" Type="int" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="VALOR" Type="float" Nullable="false" />
+    <Property Name="SINOPSE" Type="varchar" MaxLength="2000" />
+    <Property Name="DATA_CADASTRO" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LIVRO_AUTOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_AUTOR" Type="int" Nullable="false" />
+    <Property Name="ID_LIVRO" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_LIVRO_AUTOR_AUTOR">
+    <End Role="AUTOR" Type="Self.AUTOR" Multiplicity="1" />
+    <End Role="LIVRO_AUTOR" Type="Self.LIVRO_AUTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIVRO_AUTOR">
+        <PropertyRef Name="ID_AUTOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LIVRO_AUTOR_LIVRO">
+    <End Role="LIVRO" Type="Self.LIVRO" Multiplicity="1" />
+    <End Role="LIVRO_AUTOR" Type="Self.LIVRO_AUTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LIVRO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIVRO_AUTOR">
+        <PropertyRef Name="ID_LIVRO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LIVRO_EDITORA">
+    <End Role="EDITORA" Type="Self.EDITORA" Multiplicity="1" />
+    <End Role="LIVRO" Type="Self.LIVRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDITORA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIVRO">
+        <PropertyRef Name="ID_EDITORA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LivrariaDaCidadeModelStoreContainer">
+    <EntitySet Name="AUTOR" EntityType="Self.AUTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EDITORA" EntityType="Self.EDITORA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LIVRO" EntityType="Self.LIVRO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LIVRO_AUTOR" EntityType="Self.LIVRO_AUTOR" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_LIVRO_AUTOR_AUTOR" Association="Self.FK_LIVRO_AUTOR_AUTOR">
+      <End Role="AUTOR" EntitySet="AUTOR" />
+      <End Role="LIVRO_AUTOR" EntitySet="LIVRO_AUTOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LIVRO_AUTOR_LIVRO" Association="Self.FK_LIVRO_AUTOR_LIVRO">
+      <End Role="LIVRO" EntitySet="LIVRO" />
+      <End Role="LIVRO_AUTOR" EntitySet="LIVRO_AUTOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LIVRO_EDITORA" Association="Self.FK_LIVRO_EDITORA">
+      <End Role="EDITORA" EntitySet="EDITORA" />
+      <End Role="LIVRO" EntitySet="LIVRO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LivrariaDaCidadeModelStoreContainer" CdmEntityContainer="LivrariaDaCidadeDBEntities">
+    <EntitySetMapping Name="AUTOR">
+      <EntityTypeMapping TypeName="LivrariaDaCidadeModel.AUTOR">
+        <MappingFragment StoreEntitySet="AUTOR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EDITORA">
+      <EntityTypeMapping TypeName="LivrariaDaCidadeModel.EDITORA">
+        <MappingFragment StoreEntitySet="EDITORA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIVRO">
+      <EntityTypeMapping TypeName="LivrariaDaCidadeModel.LIVRO">
+        <MappingFragment StoreEntitySet="LIVRO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_EDITORA" ColumnName="ID_EDITORA" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+          <ScalarProperty Name="SINOPSE" ColumnName="SINOPSE" />
+          <ScalarProperty Name="DATA_CADASTRO" ColumnName="DATA_CADASTRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIVRO_AUTOR">
+      <EntityTypeMapping TypeName="LivrariaDaCidadeModel.LIVRO_AUTOR">
+        <MappingFragment StoreEntitySet="LIVRO_AUTOR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_AUTOR" ColumnName="ID_AUTOR" />
+          <ScalarProperty Name="ID_LIVRO" ColumnName="ID_LIVRO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
